@@ -65,45 +65,39 @@ app.get( '/auth', function ( req, res ) {
             Scopes.ViewablesRead
         ],
     );
+
     res.redirect( url );
 } );
 
 // Route /callback
 // Get Authorization code from Autodesk signin
-app.get( '/callback', async function ( req, res ) {
+app.get( '/callback', function ( req, res ) {
 
-    const code = req.query.code;
-    console.log( code );
-    res.redirect( '/' );
+} )
 
-} );
-
-// app.get( '/callback', function ( req, res ) {
+// app.get( '/callback', async function ( req, res ) {
 
 //     const code = req.query.code;
 
-//     axios( {
-//         method: 'POST',
-//         url: 'https://developer.api.autodesk.com/authentication/v2/token',
-//         headers: {
-//             'content-type': 'application/x-www-form-urlencoded',
-//             'Authorization': 'Basic b1djQXk0UVRqb2Q1akJRdFBmMzdYY2NRR0VzQWxjdkJUTmtKMVk5MklZdkkwZzZtOjBGWVNKNEpGNUExazFqQVluR1dNWmx1WDYwdGJiSW9GTU1INTFRUVcyWjhzb2p3dUtnUVVsR1RhcjZGS25tVlc=',
-//         },
-//         data: querystring.stringify( {
-//             grant_type: 'grant_type=authorization_code',
-//             code: code,
-//             redirect_uri: config.callbackURL
-//         } )
-//     } )
-//         .then( function ( response ) {
-//             // Success
-//             access_token = response.data.access_token;
-//             //console.log( response );
-//             res.send( '<p>Authentication success! Here is your token:</p>' + access_token );
-//         } )
-//         .catch( function ( error ) {
-//             // Failed
-//             //console.log( error );
-//             res.send( 'Failed to authenticate' );
-//         } );
+//     const internalCredentials = await authenticationClient.getThreeLeggedToken(
+//         config.credentials.client_id,
+//         code,
+//         config.callbackURL,
+//         { clientSecret: config.credentials.client_secret }
+//     );
+
+//     const publicCredentials = await authenticationClient.getRefreshToken(
+//         config.credentials.client_id,
+//         internalCredentials.refresh_token,
+//         {
+//             clientSecret: config.credentials.client_secret,
+//             scopes: [ Scopes.ViewablesRead ]
+//         }
+//     );
+
+//     res.send( '<p>Authentication success! Here is your token:</p>' + publicCredentials.access_token );
+
 // } );
+
+
+
