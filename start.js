@@ -71,33 +71,33 @@ app.get( '/auth', function ( req, res ) {
 
 // Route /callback
 // Get Authorization code from Autodesk signin
-app.get( '/callback', function ( req, res ) {
+// app.get( '/callback', function ( req, res ) {
 
-} )
+// } )
 
-// app.get( '/callback', async function ( req, res ) {
+app.get( '/callback', async function ( req, res ) {
 
-//     const code = req.query.code;
+    const code = req.query.code;
 
-//     const internalCredentials = await authenticationClient.getThreeLeggedToken(
-//         config.credentials.client_id,
-//         code,
-//         config.callbackURL,
-//         { clientSecret: config.credentials.client_secret }
-//     );
+    const internalCredentials = await authenticationClient.getThreeLeggedToken(
+        config.credentials.client_id,
+        code,
+        config.callbackURL,
+        { clientSecret: config.credentials.client_secret }
+    );
 
-//     const publicCredentials = await authenticationClient.getRefreshToken(
-//         config.credentials.client_id,
-//         internalCredentials.refresh_token,
-//         {
-//             clientSecret: config.credentials.client_secret,
-//             scopes: [ Scopes.ViewablesRead ]
-//         }
-//     );
+    const publicCredentials = await authenticationClient.getRefreshToken(
+        config.credentials.client_id,
+        internalCredentials.refresh_token,
+        {
+            clientSecret: config.credentials.client_secret,
+            scopes: [ Scopes.ViewablesRead ]
+        }
+    );
 
-//     res.send( '<p>Authentication success! Here is your token:</p>' + publicCredentials.access_token );
+    res.send( '<p>Authentication success! Here is your token:</p>' + publicCredentials.access_token );
 
-// } );
+} );
 
 
 
